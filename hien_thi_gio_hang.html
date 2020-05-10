@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiển thị sản phẩm</title>
+    <script src="js/san-pham.js"></script>
+    <script src="js/gio_hang.js"></script>
+    <link rel="stylesheet" href="css/hien-thi-sp.css">
+    <link rel="stylesheet" href="css/sanpham.css">
+    <link rel="stylesheet" href="css/form.css">
+    <script src="https://kit.fontawesome.com/f20d460fd9.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <header>
+        <div class="menu-top">
+            <div class="header-top">
+                <div class="martop">
+                    <nav>
+                        <ul>
+                            <li><a class="a1" href="them-moi-san-pham.html">Thêm</a></li>
+                            <li><a class="a1" href="#">Tìm kiếm</a></li>
+                            <a href="#"><img src="images/index/kinhlup.png" style="width: 15px"></a>
+                            <a href="taikhoan.html"><img src="images/index/taikhoan.png" style="width: 13px;"></a>
+                            <a href="hien_thi_gio_hang.html"><img src="images/index/giohang.png"
+                                    style="width: 35px;"></a>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="main-menu">
+                    <ul>
+                        <li><a href="sanpham.html">SẢN PHẨM</a>
+                            <ul>
+                                <li><a href="sanpham.html">SƠ MI DÀI TAY</a></li>
+                                <li><a href="somilegant.html">SƠ MI ELEGANT</a></li>
+                                <li><a href="vest.html">ÁO VEST</a></li>
+                                <li><a href="vestelegant.html">VEST ELEGANT</a></li>
+                                <li><a href="aophong.html">ÁO PHÔNG DÀI TAY</a></li>
+                                <li><a href="quankaki.html">QUẦN KAKI</a></li>
+                                <li><a href="quanau.html">QUẦN ÂU</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="gioithieu.html">GIỚI THIỆU</a></li>
+                        <li><a href="index.html"><img src="images/index/logopn.png"
+                                    style="width: 120px; height: 45px;"></a>
+                        </li>
+                        <li><a href="lienhe.html">LIÊN HỆ</a></li>
+
+                        <li><a href="tintuc.html">TIN TỨC</a>
+                            <ul>
+                                <li><a href="tintuc.html">BÁO CHÍ NÓI VỀ PHAN NGUYỄN</a></li>
+                                <li><a href="tuyendung.html">TUYỂN DỤNG</a></li>
+                                <li><a href="ctkh.html">CHƯƠNG TRÌNH KHÁCH HÀNG</a></li>
+                                <li><a href="huongdan.html">HƯỚNG DẪN</a></li>
+                                <li><a href="tinnoibo.html">TIN NỘI BỘ</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="gio-hang" id="gio-hang">
+        <div class="item-gio-hang tieuDeItemGioHang">
+
+        </div>
+    </div>
+    <script>
+        hienThiDanhSachItemGioHang();
+
+        function hienThiDanhSachItemGioHang() {
+            var danhSachItemGioHang = layGioHangTuLocalStorage();
+            var HTML = chuyenDanhSachItemGioHangSangHTML(danhSachItemGioHang)
+            console.log(danhSachItemGioHang);
+            var nodeGioHang = document.getElementById('gio-hang');
+            nodeGioHang.innerHTML = HTML;
+        };
+        function chuyenDanhSachItemGioHangSangHTML(danhSachItemGioHang) {
+            var htmlTong = '';
+            for (var i = 0; i < danhSachItemGioHang.length; i++) {
+                htmlTong = htmlTong + chuyenDoiTuongItemGioHangSangHTML(danhSachItemGioHang[i]);
+            }
+            return htmlTong;
+        }
+        function chuyenDoiTuongItemGioHangSangHTML(itemGioHang) {
+            var sanPham = laySanPhamTheoID(itemGioHang.idSanPham);
+            var tongTien = itemGioHang.soLuong * sanPham.giaGoc;
+            var html = ' <div class="item-gio-hang">  ' +
+                '           <div class="hinhAnh">  ' +
+                '               <img src="' + sanPham.hinhAnh + '">  ' +
+                '           </div>  ' +
+                '               <p class="ten">' + sanPham.ten + '</p>  ' +
+                '               <div class="gia">  ' +
+                '                   <span class="giaGoc">' + sanPham.giaGoc + 'đ</span>  ' +
+                '               </div>  ' +
+                '                   <input onchange ="thayDoiSoLuongSanPham(this,' + sanPham.id + ')" type="number" class="soLuong" value="' + itemGioHang.soLuong + '" min="1">  ' +
+                '                   <p class="tongTien">' + tongTien + '</p>  ' +
+                '               <div class="hanhDong">  ' +
+                '                   <i onclick = "onClickRemoveSanPham(' + sanPham.id + ')" class="far fa-trash-alt"></i>  ' +
+                '               </div>  ' +
+                '        </div>  '
+            return html;
+        }
+        function onClickRemoveSanPham(idSanPham){
+            var nodeCha = event.target.parentElement;
+            var nodeSanPham = nodeCha.parentElement;
+            nodeSanPham.remove();
+            var danhSachGioHang = JSON.parse(localStorage.getItem('gioHang'));
+            var viTri = danhSachGioHang.findIndex(gio => gio.idSanPham == idSanPham);
+            danhSachGioHang.splice(viTri, 1);
+            localStorage.setItem('gioHang', JSON.stringify(danhSachGioHang));
+        }
+        function thayDoiSoLuongSanPham(getThis, idSanPham) {
+            var inputChange = getThis.value;
+            var onChaneItem = layGioHangTuLocalStorage();
+            if (inputChange > 0) {
+                for (var i = 0; i < onChaneItem.length; i++) {
+
+                    if (onChaneItem[i].idSanPham == idSanPham) {
+                        onChaneItem[i].soLuong = inputChange;
+                        break;
+                    }
+                }
+                luuGioHangXuongLocalStorage(onChaneItem);
+            }
+            console.log(onChaneItem);
+            console.log(idSanPham);
+            console.log(inputChange);
+        }
+    </script>
+    <div class="dien-thong-tin">
+        <h2>Điền Thông Tin Mua Hàng</h2>
+    </div>
+    <div class="form">
+        <label for="hoTen">Họ tên</label>
+        <input type="text" id="hoTen" placeholder="Mời nhập họ tên">
+        <label id="loiHoTen" for="hoTen" class="error"></label>
+        <!--  -->
+        <label for="soDienThoai">Số điện thoại</label>
+        <input type="number" id="soDienThoai" min="1" placeholder="Mời nhập số điện thoại (gồm 10 số)">
+        <label id="loiSoDienThoai" for="soDienThoai" class="error"></label>
+        <!--  -->
+        <label for="ngaySinh">Ngày sinh</label>
+        <input type="date" id="ngaySinh">
+        <label id="loiNgaySinh" for="ngaySinh" class="error"></label>
+        <!--  -->
+        <label for="email">Email</label>
+        <input type="text" id="email" placeholder="Mời nhập Email">
+        <label id="loiEmail" for="email" class="error"></label>
+        <!--  -->
+        <label for="nhanHang">Thời gian nhận hàng (8h - 17h)</label>
+        <input type="number" id="nhanHang" min="1" placeholder="Mời nhập thời gian nhận hàng">
+        <label id="loiNhanHang" for="nhanHang" class="error"></label>
+
+        <button onclick="onClickDangNhap()" class="btn">Đặt Hàng</button>
+
+        <script>
+            function onClickDangNhap() {
+                if (kiemTraHopLeDatHang() == true) {
+                    console.log('Thực hiện đặt hàng');
+                    alert('Đặt hàng thành công');
+                }
+            }
+
+            function kiemTraHopLeDatHang(email, soDienThoai) {
+                var hopLe = true;
+                var nodeHoTen = document.getElementById('hoTen');
+                var nodeSoDienThoai = document.getElementById('soDienThoai');
+                var nodeNgaySinh = document.getElementById('ngaySinh');
+                var nodeEmail = document.getElementById('email');
+                var nodeNhanHang = document.getElementById('nhanHang');
+                var hoTen = nodeHoTen.value;
+                var soDienThoai = nodeSoDienThoai.value;
+                var ngaySinh = nodeNgaySinh.value;
+                var email = nodeEmail.value;
+                var nhanHang = nodeNhanHang.value;
+
+                console.log('Họ Tên : ' + hoTen);
+                console.log('Số điện thoại : ' + soDienThoai);
+                console.log('Địa chỉ : ' + ngaySinh);
+                console.log('Email : ' + email);
+                console.log('Thời gian nhận: ' + nhanHang);
+
+                var nodeLoiHoTen = document.getElementById('loiHoTen');
+                var nodeLoiSoDienThoai = document.getElementById('loiSoDienThoai');
+                var nodeLoiNgaySinh = document.getElementById('loiNgaySinh');
+                var nodeLoiEmail = document.getElementById('loiEmail');
+                var nodeLoiNhanHang = document.getElementById('loiNhanHang');
+                nodeLoiHoTen.innerHTML = "";
+                nodeLoiSoDienThoai.innerHTML = "";
+                nodeLoiNgaySinh.innerHTML = "";
+                nodeLoiEmail.innerHTML = "";
+                nodeLoiNhanHang.innerHTML = "";
+                if (hoTen == null || hoTen.length <= 0) {
+                    nodeLoiHoTen.innerHTML = 'Họ tên không được để trống';
+                    hopLe = false;
+                }
+                if (soDienThoai == null || soDienThoai.length <= 0) {
+                    nodeLoiSoDienThoai.innerHTML = 'Số điện thoại không được để trống';
+                    hopLe = false;
+                } else {
+                    var y = /^\d{3}[-\s]?\d{3}[-\s]?\d{4}$/;
+                    if (!y.test(soDienThoai)) {
+                        nodeLoiSoDienThoai.innerHTML = 'Số điện thoại không đúng định dạng. Ví dụ 0916767205';
+                        hopLe = false;
+                    }
+                    else {
+                        nodeLoiSoDienThoai.innerHTML = "";
+                    }
+                }
+                if (ngaySinh == null || ngaySinh.length <= 0) {
+                    nodeLoiNgaySinh.innerHTML = 'Ngày sinh không được để trống';
+                    hopLe = false;
+                }
+                if (email == null || email.length <= 0) {
+                    nodeLoiEmail.innerHTML = 'Email không được để trống'
+                    hopLe = false;
+                } else {
+                    var x = /^\w{2,20}@\w{2,15}(.[a-zA-Z]{2,3}){1,2}$/;
+                    if (!x.test(email)) {
+                        nodeLoiEmail.innerHTML = 'Email không đúng định dạng. Ví dụ abc@gmail.com';
+                        hopLe = false;
+                    }
+                    else {
+                        nodeLoiEmail.innerHTML = "";
+                    }
+                }
+
+                if (nhanHang == null || nhanHang.length <= 0) {
+                    nodeLoiNhanHang.innerHTML = 'Thời gian nhận hàng không được để trống';
+                    hopLe = false;
+                }
+
+
+                return hopLe;
+            }
+        </script>
+    </div>
+    <footer>
+        <div class="thanhfooter">
+            <div class="khungfooter">
+                <div class="chamsoc">
+                    <ul>
+                        <li>
+                            <h4>CHĂM SÓC KHÁCH HÀNG</h4>
+                            <a href="#">Sản phẩm khuyễn mãi</a>
+                            <br>
+                            <a href="#">Sản phẩm nổi bật</a>
+                            <br>
+                            <a href="#">Tất cả sản phẩm</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="chinhsach">
+                    <ul>
+                        <li>
+                            <h4>CHÍNH SÁCH</h4>
+                            <a href="#">Chính sách vận chuyển</a>
+                            <a href="#">Chính sách thanh toán</a>
+                            <a href="#">Chính sách đổi trả</a>
+                            <br>
+                            <a href="#">Chính sách bảo mật</a>
+                            <br>
+                            <a href="#">Chính sách hoàn tiền</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="vip">
+                    <h4>VIP CARD</h4>
+                    <p>Chương trình thẻ Vip </p>
+
+                    <div class="vip1">
+                        <a href="#"><img src="images/index/vip1.png"></a>
+                    </div>
+                </div>
+                <div class="khampha">
+                    <ul>
+                        <li>
+                            <h4>KHÁM PHÁ PHAN NGUYỄN</h4>
+                            <a href="#">Về chúng tôi</a>
+                            <br>
+                            <a href="#">Tuyển dụng</a>
+                            <br>
+                            <a href="#">Hệ thống cửa hàng</a>
+                            <br>
+                            <a href="#">Hợp tác kinh doanh</a>
+                            <br>
+                            <a href="#">TIN NỘI BỘ</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="khungduoifooter">
+                <div class="congty">
+                    <h4>CÔNG TY CỔ PHẦN THỜI TRANG PHAN NGUYỄN</h4>
+                    <p>
+                        0105640913 – Ngày cấp: 17/11/2011
+                        <br>
+                        Copyrights © 2018 by <a href="#">Phan Nguyễn</a>. <a href="#">Powered by Phan Nguyễn </a>
+                    </p>
+                    <div class="logocongthuong">
+                        <a href="#"><img src="images/index/logo.png"></a>
+                    </div>
+                </div>
+
+                <div class="mangxahoi">
+                    <h4>LIKE PHAN NGUYỄN TRÊN MẠNG XÃ HỘI</h4>
+                    <div class="logomangxahoi">
+                        <div class="face">
+                            <a href="#"><img src="images/index/face.png" style="width: px; height: 40px;"></a>
+                        </div>
+
+                        <div class="yt">
+                            <a href="#"><img src="images/index/yt.png" style="width: 40px; height: 40px;"></a>
+                        </div>
+                    </div>
+                    <h4>ĐĂNG KÝ NHẬN THÔNG TIN MỚI TỪ PHAN NGUYỄN</h4>
+                    <div class="thanhtimkiem">
+                        <input type="text" placeholder="Nhập Email của bạn tại đây">
+                    </div>
+
+                    <div class="dangky">
+                        <a href="#"> Đăng ký</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+</body>
+
+</html>

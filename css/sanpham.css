@@ -1,0 +1,265 @@
+body{
+	font-family: arial;
+	font-size: 14px;
+	color: #fff;
+	margin: 0px;
+	padding: 0px;
+}
+ul, ol, p, h4{
+	padding: 0px;
+	margin: 0px;
+}
+.header-top{
+	background-color: black;
+	width: 100%;
+	height: 27px;
+}
+.header-top li{
+	float: left;
+	padding-left: 8px;
+	padding-right: 8px;
+	list-style: none;
+	line-height: 25px;
+}
+.header-top a{
+	font-size: 14px;
+	text-decoration: none;
+	color: white;
+}
+.header-top a:hover{
+	opacity: 100%;
+}
+.a1{
+	opacity: 80%;
+}
+.a1 a:hover{
+	opacity: 100%;
+}
+.martop{
+	margin-left: 540px;	
+}
+li {
+	list-style: none;
+}
+.wrapper{
+	width: 100%;
+	height: 45px;
+	margin: auto;
+	background-color: #282828;
+	z-index: 3;
+ 	position: relative;
+}
+.main-menu{
+	width: 700px;
+	height: 45px;
+	background-color: #282828;
+	margin: auto;
+}
+.main-menu > ul > li{	
+	line-height: 45px;
+	margin-left: 50px;
+	list-style: none;
+	text-decoration: none;	
+	float: left;
+	position: relative;
+}
+.main-menu > ul > li > a{
+	font-size: 15px;
+	color: #fff;
+	text-decoration: none;
+}
+.main-menu > ul > li > ul{
+	width: 250px;
+	display: none;
+	position: absolute;
+	background-color: #cccccc;
+	color: #fff;
+}
+.main-menu > ul > li > ul > li > a{
+	color: black;
+
+}
+.main-menu > ul > li:hover ul{
+	display: block;
+}
+.main-menu > ul > li > ul > li{
+	border-bottom: 1px solid #fff;
+	padding: 3px 8px;
+}
+.main-menu ul > li > ul > li:hover{
+	background-color: red;
+	transition: all 0.25s;
+}
+.main-menu ul > li > ul > li > a:hover{
+	color: white;
+	transition: all 0.25s;
+}
+aside{
+	margin-top: 20px;
+}
+.thanhfooter{
+	background-color: #fff;
+	width: 100%;
+	height: 500px;
+	margin: auto;
+	margin-top: 20px;
+}
+.khungfooter{
+	background-color: #fff;
+	height: 220px;
+}
+.chamsoc{
+	width: 223px;
+	height: 200px;
+	float: left;
+	margin-left: 200px;
+	margin-top: 20px;	
+	line-height: 25px;
+	margin-right: 50px;
+	list-style: none;
+}
+.chamsoc li{
+	font-size: 14px;		
+	color: grey;	
+	list-style: none;
+}
+h4{
+	text-indent: 20px;
+	color: black;
+	font-size: 15px;
+    font-style: italic ;
+}
+.chinhsach{
+	width: 200px;
+	height: 200px;
+	float: left;
+	margin-top: 20px;	
+	margin-right: 50px;
+	line-height: 25px;		
+}
+.chinhsach li{
+	font-size: 14px;		
+	color: black;	
+	list-style: none;
+}
+.vip{
+	width: 160px;
+	height: 50px;
+	float: left;
+	margin-top: 20px;
+	margin-right: 50px;					
+}
+.vip p{
+	font-size: 14px;		
+	color: black;
+	line-height: 25px;
+}
+.vip1{
+	width: 160px;
+	height: 100px;
+	margin-top: 5px;
+	background-size: 80%;
+}
+.vip1 a{
+	text-decoration: none;
+}
+.khampha{
+	width: 235px;
+	height: 200px;
+	float: left;
+	margin-top: 20px;	
+}
+.khampha li, a{
+	font-size: 14px;
+	text-decoration: none;
+	color: black;	
+	list-style: none;
+	line-height: 25px;	
+}
+.khungduoifooter{
+	width: 100%px;
+	height: 300px;
+}
+.congty{
+	width: 420px;
+	height: 250px;
+	float: left;	
+	margin-top: 50px;	
+	margin-left: 200px;
+}
+.congty p{
+	color: black;
+	margin-top: 10px;	
+	text-align: center;
+	font-size: 14px;
+}
+.logocongthuong{
+	margin-top: 25px;
+	width: 170px;
+	height: 51px;
+	margin-left: 120px;
+
+}
+.mangxahoi{
+	margin-top: 50px;
+	width: 380px;
+	height: 250px;
+	margin-left: 180px;
+	float: left;
+}
+.mangxahoi h4{
+	line-height: 30px;
+	font-size: 15px;
+	font-style: inherit;
+	text-decoration: underline;
+	text-align: center;
+}
+.logomangxahoi{
+	width: 100px;
+	height: 50px;
+	margin-left: 140px;
+	margin-bottom: 20px;
+
+}
+.face{
+	width: 20px;
+	height: 40px;
+	margin-left: 15px;
+	float: left;	
+
+}
+.yt{
+	width: 10px;
+	height: 40px;
+	float: left;
+	margin-left: 10px;
+
+}
+.thanhtimkiem{
+	width: 279px;
+	height: 35px;
+	border: 1px solid grey;
+	border-radius: 2px;
+	float: left;
+}
+.thanhtimkiem input{
+	float: left;
+	width: 250px;
+	height: 34px;
+	border: none;
+	padding: 0px;
+	background-color: transparent;
+	padding-left: 30px;
+}
+.dangky{
+	text-align: center;	
+	width: 80px;
+	height: 35px;
+	background-color: black;	
+	float: left;
+}
+.dangky a{
+	color: #fff;
+	line-height: 35px;
+	text-decoration: none;
+}

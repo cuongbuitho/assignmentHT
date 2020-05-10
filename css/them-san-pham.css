@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+}
+
+.them-san-pham {
+    width: 40%;
+    margin: auto;
+    border: 1px solid #ddd;
+    box-shadow: 1px 2px 4px #ddd;
+    padding: 5%;
+    margin-top: 20px;
+    color: black;
+}
+
+.them-san-pham label {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.them-san-pham input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.them-san-pham .error{
+    font-size: 12px !important;
+    color: red;
+    font-style: italic !important;
+    margin-top: 5px !important;
+    line-height: 12px !important;
+    height: 12px;
+}
+.them-san-pham .btn {
+    padding: 10px 20px;
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: red;
+    color: #fff;
+}

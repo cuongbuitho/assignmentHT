@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+}
+
+.form {
+    width: 40%;
+
+    border: 1px solid #ddd;
+    padding: 30px;
+    margin: auto;
+    margin-top: 20px;
+    color: black !important;
+}
+
+.form label,
+input,
+button {
+    width: 100%;
+    display: block;
+    margin-top: 10px;
+}
+
+.form input,
+button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.form .error {
+    font-size: 12px !important;
+    color: red;
+    font-style: italic !important;
+    margin-top: 5px !important;
+    line-height: 12px !important;
+    height: 12px;
+}
+.dien-thong-tin{
+    margin-top: 50px;
+    color: red;
+    font-size: 25px;
+    text-align: center;
+}
+.btn:hover{
+    color: white;
+    background-color: #ee4d2d;
+}
